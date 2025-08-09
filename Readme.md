@@ -11,7 +11,7 @@
 | `cv.destroyAllWindows()` | Closes all OpenCV windows. | `cv.destroyAllWindows()` | None | None |
 | `cv.destroyWindow()` | Closes a specific OpenCV window. | `cv.destroyWindow(winname)` | **winname**: Window title. | None |
 
----
+=============================================================================================================================
 
 # 📹 Video Input/Output 
 
@@ -27,7 +27,7 @@
 | `cv.waitKey()` | Waits for a key press during video playback. | `cv.waitKey(delay)` | **delay**: Time in ms between frames. | ASCII value of pressed key or `-1` if none. |
 | `cv.destroyAllWindows()` | Closes all OpenCV windows. | `cv.destroyAllWindows()` | None | None |
 
----
+=============================================================================================================================
 
 # 📏 Image/Video Rescaling & Resolution API (OpenCV)
 
@@ -50,7 +50,7 @@
 | `cv.CAP_PROP_POS_FRAMES` | Current frame index. |
 | `cv.CAP_PROP_POS_MSEC` | Current position in ms. |
 
----
+=============================================================================================================================
 
 # 🎨 Drawing Functions (OpenCV)
 
@@ -77,7 +77,7 @@
 | `cv.FONT_HERSHEY_SCRIPT_COMPLEX` | More elaborate handwriting-style script font. |
 | *(+ `cv.FONT_ITALIC`)* | Add this flag with any above font to make it italic (e.g., `cv.FONT_HERSHEY_SIMPLEX | cv.FONT_ITALIC`). |
 
-----
+=============================================================================================================================
 
 # 📘 Contour 
 
@@ -127,7 +127,7 @@
 | **OpenCV ≤ 3.4.x** | `(image, contours, hierarchy)` | `_, contours, hierarchy = cv2.findContours(...)` |
 | **OpenCV ≥ 4.0.0** | `(contours, hierarchy)`        | `contours, hierarchy = cv2.findContours(...)`    |
 
----
+=============================================================================================================================
 
 # Thresholding Functions in OpenCV
 
@@ -152,7 +152,7 @@
 | `cv.THRESH_OTSU` | Automatic Otsu threshold (combine with above) |
 | `cv.THRESH_TRIANGLE` | Automatic Triangle threshold (combine with above) |
 
----
+=============================================================================================================================
 
 # Geometric Transformation Functions in OpenCV
 
@@ -172,7 +172,7 @@
 | **Undistort** | `dst = cv.undistort(src, cameraMatrix, distCoeffs)` | Removes lens distortion from an image. | `cameraMatrix`: Intrinsic camera matrix<br>`distCoeffs`: Distortion coefficients | `dst` – Corrected image |
 | **Init Undistort Map** | `map1, map2 = cv.initUndistortRectifyMap(cameraMatrix, distCoeffs, R, newCameraMatrix, size, m1type)` | Computes the undistort/rectify map for `cv.remap`. | Multiple camera parameters | `map1`, `map2` – Mapping arrays |
 
----
+=============================================================================================================================
 
 # Color Space Conversion Codes in OpenCV
 
@@ -212,7 +212,7 @@ By default, images are loaded in **BGR** format, but they can be converted to or
 | `cv.COLOR_RGBA2BGRA` | RGBA → BGRA | Swaps red/blue channels with alpha. |
 | `cv.COLOR_GRAY2BGRA` | Grayscale → BGRA | Adds alpha channel to grayscale image. |
 
----
+=============================================================================================================================
 
 # Colour Channels in OpenCV
 
@@ -231,7 +231,7 @@ By default, images are loaded in **BGR** format, but they can be converted to or
 | Green       | 1         | Green intensity     |
 | Red         | 2         | Red intensity       |
 
----
+=============================================================================================================================
 
 # Blur Techniques in OpenCV
 
@@ -244,7 +244,7 @@ Blurring is a smoothing technique used to reduce noise and detail in images. Ope
 | **Median Blur**    | Uses the median of all pixels under the kernel                | `cv2.medianBlur(src, ksize)`                 | `ksize` — kernel size (odd integer)              |
 | **Bilateral Filter**| Blurs image while preserving edges by considering pixel similarity | `cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace)` | `d` — diameter, `sigmaColor`, `sigmaSpace`        |
 
-----
+=============================================================================================================================
 
 # Bitwise Operations in OpenCV
 
@@ -259,7 +259,7 @@ Bitwise operations are pixel-wise operations that manipulate image pixels based 
 | **XOR**     | Pixel-wise XOR of two images           | `cv2.bitwise_xor(src1, src2, mask)` | Keeps pixels that are ON in one image but not both |
 | **NOT**     | Pixel-wise NOT (inversion) of an image | `cv2.bitwise_not(src, mask)`        | Inverts pixel values                               |
 
----
+=============================================================================================================================
 
 
 
