@@ -1,6 +1,6 @@
 # 🧠 OpenCV Python API Reference
 
-## 📷 Image Input/Output 
+# 📷 Image Input/Output 
 
 | Function | Description | Syntax | Parameters | Return Value |
 |----------|-------------|--------|------------|--------------|
@@ -11,7 +11,9 @@
 | `cv.destroyAllWindows()` | Closes all OpenCV windows. | `cv.destroyAllWindows()` | None | None |
 | `cv.destroyWindow()` | Closes a specific OpenCV window. | `cv.destroyWindow(winname)` | **winname**: Window title. | None |
 
-## 📹 Video Input/Output 
+---
+
+# 📹 Video Input/Output 
 
 | Function | Description | Syntax | Parameters | Return Value |
 |----------|-------------|--------|------------|--------------|
@@ -25,7 +27,9 @@
 | `cv.waitKey()` | Waits for a key press during video playback. | `cv.waitKey(delay)` | **delay**: Time in ms between frames. | ASCII value of pressed key or `-1` if none. |
 | `cv.destroyAllWindows()` | Closes all OpenCV windows. | `cv.destroyAllWindows()` | None | None |
 
-## 📏 Image/Video Rescaling & Resolution API (OpenCV)
+---
+
+# 📏 Image/Video Rescaling & Resolution API (OpenCV)
 
 | Function | Description | Syntax | Parameters | Return Value |
 |----------|-------------|--------|------------|--------------|
@@ -46,7 +50,9 @@
 | `cv.CAP_PROP_POS_FRAMES` | Current frame index. |
 | `cv.CAP_PROP_POS_MSEC` | Current position in ms. |
 
-## 🎨 Drawing Functions (OpenCV)
+---
+
+# 🎨 Drawing Functions (OpenCV)
 
 | Function | Description | Syntax | Parameters | Return Value |
 |----------|-------------|--------|------------|--------------|
@@ -71,6 +77,8 @@
 | `cv.FONT_HERSHEY_SCRIPT_COMPLEX` | More elaborate handwriting-style script font. |
 | *(+ `cv.FONT_ITALIC`)* | Add this flag with any above font to make it italic (e.g., `cv.FONT_HERSHEY_SIMPLEX | cv.FONT_ITALIC`). |
 
+----
+
 # 📘 Contour 
 
 | **Category** | **Function** | **Description** | **Key Parameters / Notes** |
@@ -92,9 +100,9 @@
 | **Shape Matching** | `cv2.matchShapes(c1, c2, method, parameter)` | Compares two shapes. | Methods: `CONTOURS_MATCH_I1`, `I2`, `I3` |
 | **Point Test** | `cv2.pointPolygonTest(contour, (x, y), measureDist)` | Checks point inside/outside contour. | Returns +1 (inside), 0 (on edge), -1 (outside) |
 
-# 📑 OpenCV `findContours` Modes & Methods
+## 📑 `findContours` Modes & Methods in OpenCV
 
-## Contour Retrieval Modes (`mode` parameter)
+### Contour Retrieval Modes (`mode` parameter)
 
 | Name | Value | Meaning |
 |------|-------|---------|
@@ -112,13 +120,16 @@
 | `cv2.CHAIN_APPROX_TC89_L1` | 3 | Applies the Teh-Chin chain approximation algorithm (L1 distance). |
 | `cv2.CHAIN_APPROX_TC89_KCOS` | 4 | Applies the Teh-Chin chain approximation algorithm (k-cosine distance). |
 
-## ⚠️ cv2.findContours Return Value Difference
+### ⚠️ cv2.findContours Return Value Difference
+
 | OpenCV Version     | Return Values                  | Example Usage                                    |
 | ------------------ | ------------------------------ | ------------------------------------------------ |
 | **OpenCV ≤ 3.4.x** | `(image, contours, hierarchy)` | `_, contours, hierarchy = cv2.findContours(...)` |
 | **OpenCV ≥ 4.0.0** | `(contours, hierarchy)`        | `contours, hierarchy = cv2.findContours(...)`    |
 
-# OpenCV Thresholding Functions
+---
+
+# Thresholding Functions in OpenCV
 
 | Function | Syntax | Description | Key Parameters | Return Value |
 |----------|--------|-------------|----------------|--------------|
@@ -143,8 +154,7 @@
 
 ---
 
-
-# OpenCV Geometric Transformation Functions
+# Geometric Transformation Functions in OpenCV
 
 | Function | Syntax | Description | Key Parameters | Return Value |
 |----------|--------|-------------|----------------|--------------|
@@ -164,11 +174,13 @@
 
 ---
 
-# OpenCV Color Space Conversion Codes
+# Color Space Conversion Codes in OpenCV
+
 OpenCV uses `cv.cvtColor(src, code)` to convert images between different color spaces.  
 By default, images are loaded in **BGR** format, but they can be converted to or from other spaces as needed.
 
 ### Key Points
+
 - **Default in OpenCV:** Images are loaded as **BGR** (Blue, Green, Red), not RGB.
 - **Grayscale:** Single-channel intensity image; reduces memory usage and often speeds up processing.
 - **HSV (Hue, Saturation, Value):** Ideal for color-based segmentation because hue is less affected by lighting changes.
@@ -224,13 +236,13 @@ By default, images are loaded in **BGR** format, but they can be converted to or
 # Blur Techniques in OpenCV
 
 Blurring is a smoothing technique used to reduce noise and detail in images. OpenCV provides several blur methods, each with different characteristics and use cases.
+
 | Technique         | Description                                                   | OpenCV Function                             | Key Parameters                                  |
 |-------------------|---------------------------------------------------------------|---------------------------------------------|------------------------------------------------|
 | **Averaging Blur** | Computes the average of all pixels under the kernel           | `cv2.blur(src, ksize)`                       | `ksize` — kernel size (width, height)           |
 | **Gaussian Blur**  | Uses a Gaussian kernel giving more weight to center pixels    | `cv2.GaussianBlur(src, ksize, sigmaX)`      | `ksize` — kernel size (odd), `sigmaX` — std dev |
 | **Median Blur**    | Uses the median of all pixels under the kernel                | `cv2.medianBlur(src, ksize)`                 | `ksize` — kernel size (odd integer)              |
 | **Bilateral Filter**| Blurs image while preserving edges by considering pixel similarity | `cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace)` | `d` — diameter, `sigmaColor`, `sigmaSpace`        |
-
 
 ----
 
