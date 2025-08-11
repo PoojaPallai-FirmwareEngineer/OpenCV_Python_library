@@ -261,20 +261,57 @@ Bitwise operations are pixel-wise operations that manipulate image pixels based 
 
 ===========================================================================
 
+# 📊 Computing Histogram in Opencv
 
+OpenCV provides a single main function for calculating histograms: **`cv.calcHist()`**.  
+You can use it for **grayscale**, **color**, and **masked** histograms by changing the parameters.
 
+### Syntax
+cv.calcHist(images, channels, mask, histSize, ranges[, hist[, accumulate]])
 
+===========================================================================
 
+# 📌 Thresholding in OpenCV
 
+| API | Syntax | Key Parameters | Return Values | Notes |
+|-----|--------|----------------|---------------|-------|
+| **Basic Threshold** | `retval, dst = cv2.threshold(src, thresh, maxval, type)` | - `src`: Grayscale image<br>- `thresh`: Threshold value<br>- `maxval`: Max pixel value<br>- `type`:<br>&nbsp;&nbsp;`cv2.THRESH_BINARY`<br>&nbsp;&nbsp;`cv2.THRESH_BINARY_INV`<br>&nbsp;&nbsp;`cv2.THRESH_TRUNC`<br>&nbsp;&nbsp;`cv2.THRESH_TOZERO`<br>&nbsp;&nbsp;`cv2.THRESH_TOZERO_INV` | - `retval`: Threshold used<br>- `dst`: Output image | Best for **uniform lighting** |
+| **Adaptive Threshold** | `dst = cv2.adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)` | - `src`: Grayscale image<br>- `maxValue`: Max pixel value<br>- `adaptiveMethod`:<br>&nbsp;&nbsp;`cv2.ADAPTIVE_THRESH_MEAN_C`<br>&nbsp;&nbsp;`cv2.ADAPTIVE_THRESH_GAUSSIAN_C`<br>- `thresholdType`: Binary or Inverse<br>- `blockSize`: Odd integer neighborhood size<br>- `C`: Constant subtracted | - `dst`: Output image | Handles **uneven lighting** |
+| **Otsu’s Binarization** | `retval, dst = cv2.threshold(src, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)` | - `src`: Grayscale image<br>- `thresh`: **0** (auto)<br>- `maxval`: 255<br>- `type`: Binary + Otsu flag | - `retval`: Auto threshold<br>- `dst`: Output image | **Automatic threshold** for bimodal histograms |
 
+===========================================================================
 
+# 📌 OpenCV Gradients & Edge Detection in OpenCV 
 
+| API | Syntax | Key Parameters | Return Value | Notes |
+|-----|--------|----------------|--------------|-------|
+| **Sobel** | `cv2.Sobel(src, ddepth, dx, dy, ksize)` | - `src`: Grayscale image<br>- `ddepth`: e.g., `cv2.CV_64F`<br>- `dx`, `dy`: Derivative order<br>- `ksize`: Kernel size (1,3,5,7) | Image (gradient result) | Directional edges (horizontal/vertical) |
+| **Scharr** | `cv2.Scharr(src, ddepth, dx, dy)` | - Same as Sobel, but fixed 3×3 kernel | Image (gradient result) | More accurate than Sobel for small kernels |
+| **Laplacian** | `cv2.Laplacian(src, ddepth, ksize)` | - `src`: Grayscale<br>- `ddepth`: Output depth<br>- `ksize`: Kernel size | Image (gradient result) | Edges in all directions |
+| **Canny** | `cv2.Canny(image, threshold1, threshold2)` | - `image`: Grayscale<br>- `threshold1`: Lower bound<br>- `threshold2`: Upper bound | Binary edge map | Best for clean, accurate edges |
 
+===========================================================================
 
+# Face Detection in OpenCV
 
+| API / Method                         | Description                              | Key Parameters                          | Return Value                       |
+|------------------------------------|------------------------------------------|----------------------------------------|-----------------------------------|
+| `cv2.CascadeClassifier(xml_file)`  | Load Haar cascade classifier             | `xml_file`: Path to cascade XML file   | CascadeClassifier object          |
+| `.detectMultiScale(image, scaleFactor=1.1, minNeighbors=3, minSize=(30,30))` | Detect objects (faces) in the image    | `image`: Grayscale input image<br>`scaleFactor`: Image scale reduction factor<br>`minNeighbors`: Neighbor threshold<br>`minSize`: Minimum object size | List of rectangles `[x, y, w, h]` for detected faces |
 
+# Face Recognition in OpenCV
 
+| API / Method                          | Description                              | Key Parameters                          | Return Value                       |
+|-------------------------------------|------------------------------------------|----------------------------------------|-----------------------------------|
+| `cv2.face.LBPHFaceRecognizer_create()` | Create LBPH face recognizer             | None                                   | LBPHFaceRecognizer object         |
+| `.train(features, labels)`           | Train recognizer with faces and labels   | `features`: List of grayscale images<br>`labels`: List of integer labels | None                              |
+| `.predict(face_roi)`                 | Predict label and confidence              | `face_roi`: Grayscale face region      | `(label, confidence)` tuple       |
+| `.save(filename)`                   | Save trained model                        | `filename`: Path to save file           | None                              |
+| `.read(filename)`                   | Load trained model                        | `filename`: Path to model file           | None                              |
+| `cv2.face.EigenFaceRecognizer_create()` | Create EigenFace recognizer             | None                                   | EigenFaceRecognizer object        |
+| `cv2.face.FisherFaceRecognizer_create()` | Create FisherFace recognizer           | None                                   | FisherFaceRecognizer object       |
 
+===========================================================================
 
 ## 🔧 Image Processing
 
@@ -289,60 +326,3 @@ Bitwise operations are pixel-wise operations that manipulate image pixels based 
 | `cv2.erode()` | Erode image using a kernel |
 | `cv2.dilate()` | Dilate image using a kernel |
 | `cv2.Canny()` | Perform Canny edge detection |
-
-## 🧱 Morphological Operations
-
-| Function | Description |
-|----------|-------------|
-| `cv2.getStructuringElement()` | Create morphological kernel |
-| `cv2.morphologyEx()` | Perform advanced morphological operations |
-
-## 🧠 Feature Detection
-
-| Function | Description |
-|----------|-------------|
-| `cv2.SIFT_create()` | Create SIFT detector |
-| `cv2.ORB_create()` | Create ORB detector |
-| `cv2.FastFeatureDetector_create()` | Create FAST detector |
-| `cv2.BFMatcher()` | Brute-force matcher |
-| `cv2.FlannBasedMatcher()` | Fast approximate matcher |
-
-## 🧍 Face and Object Detection
-
-| Function | Description |
-|----------|-------------|
-| `cv2.CascadeClassifier()` | Load Haar cascade for detection |
-| `CascadeClassifier.detectMultiScale()` | Detect faces or objects in image |
-
-## 📊 Machine Learning (ML)
-
-| Function | Description |
-|----------|-------------|
-| `cv2.ml.SVM_create()` | Create Support Vector Machine |
-| `cv2.ml.KNearest_create()` | Create K-Nearest Neighbors model |
-| `cv2.ml.NormalBayesClassifier_create()` | Create Naive Bayes classifier |
-
-## 🛠️ Utility Functions
-
-| Function | Description |
-|----------|-------------|
-| `cv2.getTickCount()` | Get current tick count |
-| `cv2.getTickFrequency()` | Get tick frequency |
-| `cv2.setMouseCallback()` | Set callback for mouse events |
-| `cv2.copyMakeBorder()` | Add border to image |
-
-## 🧩 Advanced Modules (Overview)
-
-| Module | Description |
-|--------|-------------|
-| `cv2.dnn` | Deep Neural Networks (e.g., YOLO, SSD) |
-| `cv2.ml` | Machine Learning module |
-| `cv2.aruco` | Marker detection |
-| `cv2.face` | Face recognition (OpenCV contrib) |
-| `cv2.cuda` | GPU acceleration |
-| `cv2.structured_light` | 3D structured light scanning |
-| `cv2.legacy` | Deprecated or legacy APIs |
-
-
-
-
